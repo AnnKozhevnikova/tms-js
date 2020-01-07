@@ -1,63 +1,34 @@
-/*console.log ("Hello world");
- let manager;
- let name;*/
- let currentUser;
+const data = [
+    {
+        firstName: 'Ashton',
+        lastName: 'Kutcher',
+        age: 40,
+    },
+    {
+        firstName: 'Bradley',
+        lastName: 'Pitt',
+        age: 54,
+    },
+    {
+        firstName: 'Hannah',
+        lastName: 'Dakota',
+        age: 24,
+    },
+];
 
-/* name = 'Вася';
- manager = name;
- currentUser = manager;*/
-
- console.log (currentUser);
-
-let name = "Вася";
-console.log( `hello ${1}` );
-console.log( `hello ${"name"}` );
-console.log( `hello ${name}` );
-
-
-console.log(" \n \n" - 2);
-console.log(true + false);
-console.log(false + false);
-console.log(6 / "3");
-console.log("2" * "3");
-console.log (7 / 0);
-console.log(4 + 5 + "px");
-console.log(" " + 3 + 0);
-console.log(" " - 4 + 0);
-console.log("!" + 2 + 5);
-console.log("1" - 2);
-console.log("3px" - 2);
-console.log("  -9  " + 5);
-console.log("  -9  " - 5);
-console.log(null + 1);
-console.log(undefined + 1);
-console.log();
-
-
-
-console.log(2 > 4);
-console.log(undefined == null);
-console.log(undefined === null);
-console.log(false == 0);
-console.log(false == "");
-console.log(false === "");
-
-
-
-
-let animal= {
-    type:"dog",
-    weight:40,
-    color: "green",
-    speed: 10,
-};
-
-delete animal.weight;
-console.log (animal);
-
-
-
-
-
-
-
+function checkInf(lastName) {
+    if (lastName === 'KUTCHER') {
+        return data[0];
+    } else
+        if (lastName === 'BRADLEY') {
+            return data[1];}
+            else
+            if (lastName === 'DAKOTA') {
+                return data[2];
+            } else {
+                console.log('No results found for your request');
+                   }
+         }
+let lastName='kutcher'.toUpperCase();
+let result = checkInf(lastName);
+console.log (result);
