@@ -16,19 +16,15 @@ const data = [
     },
 ];
 
-function checkInf(lastName) {
-    if (lastName === 'KUTCHER') {
-        return data[0];
-    } else
-        if (lastName === 'BRADLEY') {
-            return data[1];}
-            else
-            if (lastName === 'DAKOTA') {
-                return data[2];
-            } else {
-                console.log('No results found for your request');
-                   }
-         }
+let checkInf=function(lastName){
+    for (let i=0; i<=data.length-1;i++){
+        if(data[i].lastName===lastName){
+         return data[i];
+        }
+    }
+    return 'No results found for your request';
+};
+
 let lastName='kutcher'.toUpperCase();
-let result = checkInf(lastName);
-console.log (result);
+let a=checkInf('Pitt');
+console.log(a);
