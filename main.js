@@ -17,7 +17,7 @@ const data = [
 ];
 
 let checkInf=function(lastName){
-    for (let i=0; i<=data.length-1;i++){
+    for (let i=0; i<data.length;i++){
         if(data[i].lastName===lastName){
          return data[i];
         }
