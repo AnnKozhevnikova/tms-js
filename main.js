@@ -82,6 +82,7 @@ let change=function(array) {
 };
 let array = [5, 86, 20, 4, 100, 66, 890, 33, 80, 9];
 console.log(array);
+
 console.log(change(array));
 
 
