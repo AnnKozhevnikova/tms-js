@@ -18,10 +18,17 @@ const text2=document.getElementById('text2');
 const text3=document.getElementById('text3');
 
 
-text1.addEventListener('click', event => {
- event.preventDefault();
- text1.style.color = 'cyan';
-});
+
+ let f1=() => {
+ let i=0;
+ return () => {
+  text1.style.color = colors[i];
+  i++;
+  if (i==colors.length){i=0};
+ }
+}
+text1.addEventListener('click',f1());
+
 
 text2.addEventListener('click', event => {
  event.preventDefault();
