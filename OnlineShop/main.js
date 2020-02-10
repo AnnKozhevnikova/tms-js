@@ -171,7 +171,7 @@ const sum= products.reduce((acc, product) => {
     }
     return acc;
 }, 0);
-amount.textContent=sum;
+amount.textContent=sum.toFixed(2);
 
 let DescAsc=document.getElementById("Desc");
 let flag=0;
