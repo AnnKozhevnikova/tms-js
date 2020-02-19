@@ -52,14 +52,14 @@
         }
     ];
 
-    const currency =await fetch('http://www.nbrb.by/api/exrates/rates/145')
+    const currency = await fetch('http://www.nbrb.by/api/exrates/rates/145')
         .then(response=>response.json())
         .then(data=>data);
     console.log(currency);
 
-    let contents=products.concat();
+    let contents = products.concat();
 
-    let sortingDesc= (arr) => {
+    let sortingDesc = (arr) => {
         arr.sort(function (a, b) {
             if (a.price.value > b.price.value) {
                 return -1;
@@ -73,7 +73,7 @@
 
     sortingDesc(contents);
 
-    let sortingAsc= (arr) => {
+    let sortingAsc = (arr) => {
         arr.sort(function (a, b) {
             if (a.price.value > b.price.value) {
                 return 1;
@@ -85,29 +85,26 @@
         });
     };
 
-    const amount=document.getElementById("amount");
-    const circle=document.getElementById("orange_circle");
-    const input=document.getElementById("input");
+    const amount = document.getElementById("amount");
+    const circle = document.getElementById("orange_circle");
+    const input = document.getElementById("input");
 
-
-
-
-    const addToBasket=(id)=>event=>{
+    const addToBasket = (id) => event=>{
         event.preventDefault();
-        const product=products.find(item => item.id===id);
+        const product = products.find(item => item.id===id);
         event.target.classList.toggle('active');
 
         if ( event.target.classList.contains('active')) {
-            event.target.textContent='Remove from Basket';
-            let loc_array=JSON.parse(localStorage.getItem("ID"));
+            event.target.textContent = 'Remove from Basket';
+            let loc_array = JSON.parse(localStorage.getItem("ID"));
             loc_array.push(id);
             localStorage.setItem('ID', JSON.stringify(loc_array));
             amount.textContent = (Number(amount.textContent)+product.price.value).toFixed(2);
             circle.textContent = loc_array.length;
         }
         else {
-            event.target.textContent='Add to Basket';
-            let loc_array=JSON.parse(localStorage.getItem("ID"));
+            event.target.textContent = 'Add to Basket';
+            let loc_array = JSON.parse(localStorage.getItem("ID"));
             loc_array.splice(loc_array.indexOf(id),1);
             localStorage.setItem('ID', JSON.stringify(loc_array));
             amount.textContent-= (product.price.value).toFixed(2);
@@ -119,8 +116,7 @@
     let section = document.getElementById("section");
 
     let content = (arr) => {
-
-        section.innerHTML ='';
+        section.innerHTML = '';
 
         for (let i = 0; i < arr.length; i++) {
             let newDiv = document.createElement('div');
@@ -131,28 +127,27 @@
                 valuta = '$';
             }
 
-
             newDiv.innerHTML = `
-<div class="image">
-                <img src="${arr[i].imageLink}" alt="image">
+<div class = "image">
+                <img src = "${arr[i].imageLink}" alt = "image">
             </div>
     
-            <div class="properties">
+            <div class = "properties">
                 <p>${arr[i].title}</p>
-                <p class="characteristics">${arr[i].description}</p>
+                <p class = "characteristics">${arr[i].description}</p>
             </div>
             
-            <div class="product_price">
-                <p class="price">${valuta} ${arr[i].price.value.toFixed(2)}</p>
-                <a class="button" href="#">Add to Basket</a>
+            <div class = "product_price">
+                <p class = "price">${valuta} ${arr[i].price.value.toFixed(2)}</p>
+                <a class = "button" href = "#">Add to Basket</a>
             </div>
 `;
-            let a=newDiv.querySelector('.button');
+            let a = newDiv.querySelector('.button');
             a.addEventListener('click',addToBasket(arr[i].id));
 
             if (localStorage.getItem("ID").includes(arr[i].id)) {
                 a.classList.add('active');
-                a.textContent='Remove from Basket';
+                a.textContent = 'Remove from Basket';
             }
 
             section.appendChild(newDiv);
@@ -160,32 +155,32 @@
     };
     content(contents);
 
-    let current= JSON.parse(localStorage.getItem("ID")) || [];
-    circle.textContent=current.length;
+    let current = JSON.parse(localStorage.getItem("ID")) || [];
+    circle.textContent = current.length;
 
-    const sum= products.reduce((acc, product) => {
+    const sum = products.reduce((acc, product) => {
         if (current.includes(product.id)) {
-            acc+=product.price.value;
+            acc+= product.price.value;
         }
         return acc;
     }, 0);
-    amount.textContent=sum.toFixed(2);
+    amount.textContent = sum.toFixed(2);
 
-    let DescAsc=document.getElementById("Desc");
-    let flag=0;
+    let DescAsc = document.getElementById("Desc");
+    let flag = 0;
     DescAsc.addEventListener('click', ()=> {
 
         if(flag===0) {
-            DescAsc.textContent="Asc";
+            DescAsc.textContent = "Asc";
             sortingAsc(contents);
             content(contents);
             flag++;
         }
         else {
-            DescAsc.textContent="Desc";
+            DescAsc.textContent = "Desc";
             sortingDesc(contents);
             content(contents);
-            flag=0;
+            flag = 0;
         }
     });
 
@@ -195,7 +190,7 @@
             let reg = new RegExp(`${event.target.value}`, 'i');
             return reg.test(product.title);
         });
-        contents=search;
+        contents = search;
         if (flag===0) {
             sortingDesc(contents);
             content(contents);
@@ -207,7 +202,7 @@
         }
 
         if (contents.length===0) {
-            section.innerHTML =`<p> No results found for your request </p>`;
+            section.innerHTML = `<p> No results found for your request </p>`;
         }
     });
 })();
